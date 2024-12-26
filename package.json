@@ -22,6 +22,7 @@
     "@videosdk.live/react-sdk": "^0.1.75",
     "axios": "^1.5.0",
     "lodash.debounce": "^4.0.8",
+    "@types/lodash.debounce": "^4.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-dropzone": "^14.2.3",
@@ -93,7 +94,6 @@
     ]
   },
   "devDependencies": {
-    "@types/lodash.debounce": "^4.0.7",
     "@types/react-router-dom": "^5.3.3",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
