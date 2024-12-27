@@ -24,7 +24,7 @@ function QuickDoctorChat({ patient, user }: ChatSidePanelProps) {
   useEffect(() => {
     const getPatientFromAppointment = async () => {
       try {
-        const response = await axios.get(`/api/v1/appointments/${appointment_id}`);
+        const response = await axios.get(`${process.env.API_BASE_URL}/api/v1/appointments/${appointment_id}`);
 
         setSelectedPatient(response.data.patient);
       } catch (error) {
@@ -35,11 +35,11 @@ function QuickDoctorChat({ patient, user }: ChatSidePanelProps) {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `/api/v1/chats/verify/?doctor_id=${user.id}&patient_id=${patient.user_id}`,
+          `${process.env.API_BASE_URL}/api/v1/chats/verify/?doctor_id=${user.id}&patient_id=${patient.user_id}`,
         );
 
         if (!response.data?.id) {
-          const createChatResponse = await axios.post('/api/v1/chats', {
+          const createChatResponse = await axios.post(`${process.env.API_BASE_URL}/api/v1/chats`, {
             doctor_id: user.id,
             patient_id: patient.user_id,
           });

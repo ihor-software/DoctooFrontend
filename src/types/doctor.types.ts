@@ -33,7 +33,7 @@ export type DoctorSpecialty = {
 };
 
 export const castToDoctor = async (object?: any): Promise<Doctor | undefined> => {
-  const reviews = await request(RequestMethod.GET, `/api/v1/reviews/${object.user_id}`);
+  const reviews = await request(RequestMethod.GET, `${process.env.API_BASE_URL}/api/v1/reviews/${object.user_id}`);
   const reviewsData: Review[] = reviews.data.map(
     (item: { rating: number; review_text: string }) => {
       return { text: item.review_text, rating: item.rating, author: '' };

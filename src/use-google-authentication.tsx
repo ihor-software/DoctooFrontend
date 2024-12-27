@@ -9,7 +9,7 @@ function useGoogleAuthentication() {
     if (response.access_token) {
       const accessToken = response.access_token;
 
-      const authenticationResponse = await fetch(`/api/v1/google-authentication/sign-in`, {
+      const authenticationResponse = await fetch(`${process.env.API_BASE_URL}/api/v1/google-authentication/sign-in`, {
         method: 'POST',
         body: JSON.stringify({
           token: accessToken,
@@ -31,7 +31,7 @@ function useGoogleAuthentication() {
     if (response.access_token) {
       const accessToken = response.access_token;
 
-      const authenticationResponse = await fetch(`/api/v1/google-authentication/sign-up`, {
+      const authenticationResponse = await fetch(`${process.env.API_BASE_URL}/api/v1/google-authentication/sign-up`, {
         method: 'POST',
         body: JSON.stringify({
           token: accessToken,

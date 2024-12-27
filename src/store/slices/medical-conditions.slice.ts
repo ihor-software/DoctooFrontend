@@ -22,7 +22,7 @@ const medicalConditionsSlice = createSlice({
 });
 
 export const fetchAllMedicalConditions = () => async (dispatch: AppDispatchType) => {
-  const medicalConditions = await axios.get('/api/v1/medical-conditions');
+  const medicalConditions = await axios.get(`${process.env.API_BASE_URL}/api/v1/medical-conditions`);
 
   if (medicalConditions.status === 200) {
     dispatch(medicalConditionsSlice.actions.setMedicalConditions(medicalConditions.data));

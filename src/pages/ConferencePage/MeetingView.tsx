@@ -59,7 +59,7 @@ function MeetingView({
   useEffect(() => {
     const getDoctorFromAppointment = async () => {
       try {
-        const response = await axios.get(`/api/v1/appointments/${appointment_id}`);
+        const response = await axios.get(`${process.env.API_BASE_URL}/api/v1/appointments/${appointment_id}`);
         console.log(response.data);
         setDoctor(response.data.doctor);
       } catch (error) {
@@ -69,7 +69,7 @@ function MeetingView({
 
     const getPatinetFromAppointment = async () => {
       try {
-        const response = await axios.get(`/api/v1/appointments/${appointment_id}`);
+        const response = await axios.get(`${process.env.API_BASE_URL}/api/v1/appointments/${appointment_id}`);
         console.log(response.data);
         setPatient(response.data.patient);
       } catch (error) {

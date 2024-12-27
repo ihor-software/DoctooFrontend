@@ -81,10 +81,10 @@ function getDataForAppointments(
 }
 
 async function createAppointments(id: number): Promise<Appointment[]> {
-  const appointmentsData = await fetchData('/api/v1/appointments/patient/' + id);
-  const doctorsData = await fetchData('/api/v1/doctors');
-  const usersData = await fetchData('/api/v1/users');
-  const specialtiesData = await fetchData('/api/v1/specialties/');
+  const appointmentsData = await fetchData(`${process.env.API_BASE_URL}/api/v1/appointments/patient/` + id);
+  const doctorsData = await fetchData(`${process.env.API_BASE_URL}/api/v1/doctors`);
+  const usersData = await fetchData(`${process.env.API_BASE_URL}/api/v1/users`);
+  const specialtiesData = await fetchData(`${process.env.API_BASE_URL}/api/v1/specialties/`);
 
   const appointments: Appointment[] = appointmentsData.map((appointment: any) => {
     return getDataForAppointments(appointment, doctorsData, usersData, specialtiesData);
@@ -95,10 +95,10 @@ async function createAppointments(id: number): Promise<Appointment[]> {
 
 
 async function createDoctorAppointments(id: number): Promise<Appointment[]> {
-  const appointmentsData = await fetchData('/api/v1/appointments/doctor/' + id);
-  const doctorsData = await fetchData('/api/v1/doctors');
-  const usersData = await fetchData('/api/v1/users');
-  const specialtiesData = await fetchData('/api/v1/specialties/');
+  const appointmentsData = await fetchData(`${process.env.API_BASE_URL}/api/v1/appointments/doctor/` + id);
+  const doctorsData = await fetchData(`${process.env.API_BASE_URL}/api/v1/doctors`);
+  const usersData = await fetchData(`${process.env.API_BASE_URL}/api/v1/users`);
+  const specialtiesData = await fetchData(`${process.env.API_BASE_URL}/api/v1/specialties/`);
 
   const appointments: Appointment[] = appointmentsData.map((appointment: any) => {
     return getDataForAppointments(appointment, doctorsData, usersData, specialtiesData);
@@ -125,9 +125,9 @@ const fetchDoctorAppointments = createAsyncThunk(
 );
 
 export const fetchFamilyDoctor = createAsyncThunk('doctor/familyDoctor', async (id: number) => {
-  const patientData = await fetchData('/api/v1/patients/' + id);
-  const familyDoctor = await fetchData('/api/v1/doctors/' + patientData.family_doctor_id);
-  const user = await fetchData(`/api/v1/users/${familyDoctor.user_id}`);
+  const patientData = await fetchData(`${process.env.API_BASE_URL}/api/v1/patients/` + id);
+  const familyDoctor = await fetchData(`${process.env.API_BASE_URL}/api/v1/doctors/` + patientData.family_doctor_id);
+  const user = await fetchData(`${process.env.API_BASE_URL}/api/v1/users/${familyDoctor.user_id}`);
   return {
     user_id: familyDoctor.user_id,
     hospital_id: familyDoctor.hospital.id,

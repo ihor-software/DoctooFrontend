@@ -18,7 +18,7 @@ const ChatList: React.FC<{
 
   useEffect(() => {
     axios
-      .get('/api/v1/doctors')
+      .get(`${process.env.API_BASE_URL}/api/v1/doctors`)
       .then(response => {
         setDoctorList(response.data);
       })
@@ -30,11 +30,11 @@ const ChatList: React.FC<{
   const handleChatItemClick = (doctor: Doctor) => {
     console.log(doctor.user.first_name);
     axios
-      .get(`/api/v1/chats/verify/?doctor_id=${doctor.user_id}&patient_id=${user.id}`)
+      .get(`${process.env.API_BASE_URL}/api/v1/chats/verify/?doctor_id=${doctor.user_id}&patient_id=${user.id}`)
       .then(response => {
         if (!response.data?.id) {
           axios
-            .post('/api/v1/chats', {
+            .post(`${process.env.API_BASE_URL}/api/v1/chats`, {
               doctor_id: doctor.user_id,
               patient_id: user.id,
             })

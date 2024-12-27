@@ -31,7 +31,7 @@ const ChatInputDoctor: React.FC<ChatInputDoctorProps> = ({ onSendMessage }) => {
       formData.append('attachments', file);
 
       axios
-        .post('/api/v1/files/upload-attachments', formData, {
+        .post(`${process.env.API_BASE_URL}/api/v1/files/upload-attachments`, formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },

@@ -17,7 +17,7 @@ function QuickNotes({ patient }: { patient: Patient }) {
 
   const handleDownloadAppointmentSummary = async () => {
     const response = await axios.post(
-      `/api/v1/pdf/appointment-summary`,
+      `${process.env.API_BASE_URL}/api/v1/pdf/appointment-summary`,
       JSON.stringify({
         doctorNote: state.resultContent,
         appointment_id: parseInt(appointmentId as string),
@@ -47,7 +47,7 @@ function QuickNotes({ patient }: { patient: Patient }) {
 
     if (state.content) {
       const response = await axios.post(
-        `/api/v1/summarization`,
+        `${process.env.API_BASE_URL}/api/v1/summarization`,
         JSON.stringify({ documentContent: state.content }),
         {
           headers: {

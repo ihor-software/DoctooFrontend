@@ -28,7 +28,7 @@ const virtualAssistantSlice = createSlice({
 });
 
 export const fetchAllMessages = () => async (dispatch: AppDispatchType) => {
-  const messages = await axios.get('/api/v1/virtual-assistant/messages');
+  const messages = await axios.get(`${process.env.API_BASE_URL}/api/v1/virtual-assistant/messages`);
 
   if (messages.status === 200) {
     dispatch(virtualAssistantSlice.actions.setVirtualAssistantChatMessages(messages.data));
@@ -36,14 +36,14 @@ export const fetchAllMessages = () => async (dispatch: AppDispatchType) => {
 };
 
 export const deleteAllMessages = () => async (dispatch: AppDispatchType) => {
-  const response = await axios.delete('/api/v1/virtual-assistant/messages');
+  const response = await axios.delete(`${process.env.API_BASE_URL}/api/v1/virtual-assistant/messages`);
 
   dispatch(virtualAssistantSlice.actions.deleteVirtualAssistantChatMessages());
 };
 
 export const sendMessage = (message: any) => async (dispatch: AppDispatchType) => {
   const response = await axios.post(
-    '/api/v1/virtual-assistant/send-message',
+    `${process.env.API_BASE_URL}/api/v1/virtual-assistant/send-message`,
     JSON.stringify(message),
     {
       headers: {

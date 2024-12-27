@@ -29,7 +29,7 @@ export const castToPatient = async (object?: any): Promise<Patient | undefined> 
   if (object.family_doctor_id) {
     const fetchDoctorResponse = await request(
       RequestMethod.GET,
-      `/api/v1/doctors/${object.family_doctor_id}`,
+      `${process.env.API_BASE_URL}/api/v1/doctors/${object.family_doctor_id}`,
     );
 
     if (fetchDoctorResponse.status === 200 && fetchDoctorResponse.data) {
@@ -38,7 +38,7 @@ export const castToPatient = async (object?: any): Promise<Patient | undefined> 
   }
 
   if (object.user_id) {
-    const fetchUserResponse = await request(RequestMethod.GET, `/api/v1/users/${object.user_id}`);
+    const fetchUserResponse = await request(RequestMethod.GET, `${process.env.API_BASE_URL}/api/v1/users/${object.user_id}`);
 
     if (fetchUserResponse.status === 200 && fetchUserResponse.data) {
       user = await castToUser(fetchUserResponse.data);

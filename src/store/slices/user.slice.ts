@@ -25,7 +25,7 @@ const usersSlice = createSlice({
 });
 
 export const fetchAllUsers = () => async (dispatch: AppDispatchType) => {
-  const response = await fetch(`/api/v1/users`, {
+  const response = await fetch(`${process.env.API_BASE_URL}/api/v1/users`, {
     method: 'GET',
   });
 
@@ -35,7 +35,7 @@ export const fetchAllUsers = () => async (dispatch: AppDispatchType) => {
 };
 
 export const fetchUserById = (id: number) => async (dispatch: AppDispatchType) => {
-  const response = await fetch(`/api/v1/users/${id}`, {
+  const response = await fetch(`${process.env.API_BASE_URL}/api/v1/users/${id}`, {
     method: 'GET',
   });
 

@@ -82,7 +82,7 @@ export const fetchMoreDoctors = createAsyncThunk(
     hospital?: string;
   }) => {
     const response = await axios.get(
-      `/api/v1/doctors/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}&specialty=${specialty}&hospital=${hospital}`,
+      `${process.env.API_BASE_URL}/api/v1/doctors/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}&specialty=${specialty}&hospital=${hospital}`,
     );
     let doctors = await response.data;
 
@@ -108,7 +108,7 @@ export const fetchDoctors = createAsyncThunk(
     hospital: string;
   }) => {
     const response = await axios.get(
-      `/api/v1/doctors/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}&specialty=${specialty}&hospital=${hospital}`,
+      `${process.env.API_BASE_URL}/api/v1/doctors/search?keyword=${keyword}&page=${page}&pageSize=${pageSize}&specialty=${specialty}&hospital=${hospital}`,
     );
     let doctors = await response.data;
 
@@ -119,7 +119,7 @@ export const fetchDoctors = createAsyncThunk(
 );
 
 export const fetchAllDoctors = () => async (dispatch: AppDispatchType) => {
-  const response = await fetch(`/api/v1/doctors`, {
+  const response = await fetch(`${process.env.API_BASE_URL}/api/v1/doctors`, {
     method: 'GET',
   });
 
@@ -131,7 +131,7 @@ export const fetchAllDoctors = () => async (dispatch: AppDispatchType) => {
 };
 
 export const fetchDoctorById = (id: number) => async (dispatch: AppDispatchType) => {
-  const response = await fetch(`/api/v1/doctors/${id}`, {
+  const response = await fetch(`${process.env.API_BASE_URL}/api/v1/doctors/${id}`, {
     method: 'GET',
   });
 

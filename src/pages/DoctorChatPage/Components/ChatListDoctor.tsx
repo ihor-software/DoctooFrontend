@@ -20,7 +20,7 @@ const ChatListDoctor: React.FC<{
     }
 
     axios
-      .get(`/api/v1/chats/doctor/${user.id}`)
+      .get(`${process.env.API_BASE_URL}/api/v1/chats/doctor/${user.id}`)
       .then(response => {
         setChatsList(response.data);
       })

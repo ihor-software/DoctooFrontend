@@ -10,7 +10,7 @@ import axios, { AxiosError, AxiosInstance, AxiosPromise } from 'axios';
 //   withCredentials: true,
 // });
 const axiosInstance = axios.create({
-  baseURL: 'https://doctoo-backend.onrender.com/api/v1/',
+  baseURL: `${process.env.REACT_APP_API_BASE_URL}/api/v1/`,
   headers: {
     'Content-Type': 'application/json',
   },

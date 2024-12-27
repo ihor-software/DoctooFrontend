@@ -33,8 +33,8 @@ const appointmentsSlice = createSlice({
 });
 
 export const fetchAllAppointments = () => async (dispatch: AppDispatchType) => {
-  const appointmentsResponse = await request(RequestMethod.GET, `/api/v1/appointments`);
-  const authenticateResponse = await request(RequestMethod.GET, `/api/v1/authentication`);
+  const appointmentsResponse = await request(RequestMethod.GET, `${process.env.API_BASE_URL}/api/v1/appointments`);
+  const authenticateResponse = await request(RequestMethod.GET, `${process.env.API_BASE_URL}/api/v1/authentication`);
 
   let patientId: number;
 
@@ -60,7 +60,7 @@ export const fetchAllAppointments = () => async (dispatch: AppDispatchType) => {
 };
 
 export const getUpcomingAppointments = () => async (dispatch: AppDispatchType) => {
-  const appointmentsResponse = await request(RequestMethod.GET, `/api/v1/appointments/upcoming`);
+  const appointmentsResponse = await request(RequestMethod.GET, `${process.env.API_BASE_URL}/api/v1/appointments/upcoming`);
   console.log(appointmentsResponse);
 
   if (appointmentsResponse.status === 200) {
@@ -77,7 +77,7 @@ export const getUpcomingAppointments = () => async (dispatch: AppDispatchType) =
 export const createAppointment = (appointment: any) => async (dispatch: AppDispatchType) => {
   const createAppointmentResponse = await request(
     RequestMethod.POST,
-    `/api/v1/appointments`,
+    `${process.env.API_BASE_URL}/api/v1/appointments`,
     {},
     appointment,
   );
@@ -109,7 +109,7 @@ export const updateAppointment =
 
     const response = await request(
       RequestMethod.PATCH,
-      `/api/v1/appointments/${id}`,
+      `${process.env.API_BASE_URL}/api/v1/appointments/${id}`,
       { 'Content-Type': 'application/json' },
       requestBody,
     );

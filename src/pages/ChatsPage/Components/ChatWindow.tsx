@@ -34,7 +34,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
   const fetchMessages = () => {
     if (verifiedChat) {
       axios
-        .get(`/api/v1/messages/chat/${verifiedChat.id}`)
+        .get(`${process.env.API_BASE_URL}/api/v1/messages/chat/${verifiedChat.id}`)
         .then(response => {
           setMessages(response.data);
         })
@@ -55,7 +55,7 @@ const ChatWindow: React.FC<ChatWindowProps> = ({
       const second = currentDate.getSeconds();
 
       axios
-        .post('/api/v1/messages/create', {
+        .post(`${process.env.API_BASE_URL}/api/v1/messages/create`, {
           chat_id: verifiedChat.id,
           message_text: message,
           file: awsS3Url,

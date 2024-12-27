@@ -8,7 +8,7 @@ type NotificationStateType = {
 };
 
 async function createNotifications(id: number): Promise<Notification[]> {
-  const notificationsData = await fetchData('/api/v1/notifications/patient/' + id);
+  const notificationsData = await fetchData(`${process.env.API_BASE_URL}/api/v1/notifications/patient/` + id);
 
   const notifications: Notification[] = notificationsData.map((notification: any) => {
     return {

@@ -16,7 +16,7 @@ interface IregisterUser {
 }
 const registerUser = async (data: IregisterUser) => {
   const response = await axios.post<{ message: string; user: User }>(
-    `/api/v1/authentication/signup/`,
+    `${process.env.API_BASE_URL}/api/v1/authentication/signup/`,
     data,
   );
   return response;
@@ -28,7 +28,7 @@ interface IloginUser {
 }
 
 const loginUser = async (data: IloginUser) => {
-  const response = await fetch(`/api/v1/authentication/log-in/`, {
+  const response = await fetch(`${process.env.API_BASE_URL}/api/v1/authentication/log-in/`, {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -40,32 +40,32 @@ const loginUser = async (data: IloginUser) => {
 };
 
 const forgotPassword = async (data: ForgotPasswordDto) => {
-  return axios.post('/api/v1/authentication/forgot-password/', data);
+  return axios.post(`${process.env.API_BASE_URL}/api/v1/authentication/forgot-password/`, data);
 };
 
 const resetPassword = async (data: ResetPasswordDto, token: string) => {
-  return axios.post(`/api/v1/authentication/reset-password/${token}`, data);
+  return axios.post(`${process.env.API_BASE_URL}/api/v1/authentication/reset-password/${token}`, data);
 };
 
 const getUser = async () => {
-  return axios.get<{ user: User; settings: UserSettings }>('/api/v1/authentication', {
+  return axios.get<{ user: User; settings: UserSettings }>(`${process.env.API_BASE_URL}/api/v1/authentication`, {
     withCredentials: true,
   });
 };
 
 const logout = async () => {
-  return axios.delete('/api/v1/authentication/logout', { withCredentials: true });
+  return axios.delete(`${process.env.API_BASE_URL}/api/v1/authentication/logout`, { withCredentials: true });
 };
 
 const patchUser = async (id: User['id'] | undefined, updatedUser: Partial<User>) => {
-  return axios.patch<User>(`/api/v1/users/${id}`, updatedUser);
+  return axios.patch<User>(`${process.env.API_BASE_URL}/api/v1/users/${id}`, updatedUser);
 };
 
 const patchPatientConditions = async (
   id: User['id'] | undefined,
   data: { allergies: Allergy['id'][]; conditions: Condition['id'][] },
 ) => {
-  return axios.patch<Patient>(`/api/v1/patients/${id}/conditions`, data);
+  return axios.patch<Patient>(`${process.env.API_BASE_URL}/api/v1/patients/${id}/conditions`, data);
 };
 
 export {

@@ -45,7 +45,7 @@ const SummarizationClinicalNotesPage: FC = () => {
 
     if (state.content) {
       const response = await axios.post(
-        `/api/v1/summarization`,
+        `${process.env.API_BASE_URL}/api/v1/summarization`,
         JSON.stringify({ documentContent: state.content }),
         {
           headers: {

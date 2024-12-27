@@ -42,14 +42,14 @@ export const useDefaultFilters = (
   setHospitals: (arg0: any) => void,
 ) => {
   useEffect(() => {
-    fetchData('/api/v1/specialties').then(result => {
+    fetchData(`${process.env.API_BASE_URL}/api/v1/specialties`).then(result => {
       const specialtyData = result.map((specialty: { specialty: string }) => {
         return specialty.specialty;
       });
       setSpecialties(['All specializations', ...specialtyData]);
       return specialtyData;
     });
-    fetchData('/api/v1/hospitals').then(result => {
+    fetchData(`${process.env.API_BASE_URL}/api/v1/hospitals`).then(result => {
       const hospitalsData = result.map((hospital: { name: string }) => {
         return hospital.name;
       });

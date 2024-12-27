@@ -32,7 +32,7 @@ export const castToAppointment = async (object?: any): Promise<Appointment | und
   if (object.doctor_id) {
     const fetchDoctorResponse = await request(
       RequestMethod.GET,
-      `/api/v1/doctors/${object.doctor_id}`,
+      `${process.env.API_BASE_URL}/api/v1/doctors/${object.doctor_id}`,
     );
 
     if (fetchDoctorResponse.status === 200 && fetchDoctorResponse.data) {
@@ -44,7 +44,7 @@ export const castToAppointment = async (object?: any): Promise<Appointment | und
   if (object.patient_id) {
     const fetchPatientResponse = await request(
       RequestMethod.GET,
-      `/api/v1/patients/${object.patient_id}`,
+      `${process.env.API_BASE_URL}/api/v1/patients/${object.patient_id}`,
     );
 
     if (fetchPatientResponse.status === 200 && fetchPatientResponse.data) {
@@ -54,7 +54,7 @@ export const castToAppointment = async (object?: any): Promise<Appointment | und
   }
 
   if (object) {
-    const reviews = await request(RequestMethod.GET, `/api/v1/reviews/${object.doctor.user_id}`);
+    const reviews = await request(RequestMethod.GET, `${process.env.API_BASE_URL}/api/v1/reviews/${object.doctor.user_id}`);
     const reviewsData: Review[] = reviews.data.map(
       (item: { rating: number; review_text: string }) => {
         return { text: item.review_text, rating: item.rating, author: '' };

@@ -14,7 +14,7 @@ const VerifyRegistrationPage = () => {
   const sendVerificationToken = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`/api/v1/authentication/verify/${token}`, {
+      const response = await fetch(`${process.env.API_BASE_URL}/api/v1/authentication/verify/${token}`, {
         method: 'POST',
       });
 

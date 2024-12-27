@@ -33,7 +33,7 @@ const ChatWindowDoctor: React.FC<ChatWindowDoctorProps> = ({
   const fetchMessages = () => {
     if (selectedPatient) {
       axios
-        .get(`/api/v1/messages/chat/${selectedChat?.id}`)
+        .get(`${process.env.API_BASE_URL}/api/v1/messages/chat/${selectedChat?.id}`)
         .then(response => {
           setMessages(response.data);
         })
@@ -54,7 +54,7 @@ const ChatWindowDoctor: React.FC<ChatWindowDoctorProps> = ({
       const second = currentDate.getSeconds();
 
       axios
-        .post('/api/v1/messages/create', {
+        .post(`${process.env.API_BASE_URL}/api/v1/messages/create`, {
           chat_id: selectedChat?.id,
           message_text: message,
           file: awsS3Url,

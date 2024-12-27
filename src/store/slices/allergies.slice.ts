@@ -22,7 +22,7 @@ const allergiesSlice = createSlice({
 });
 
 export const fetchAllAllergies = () => async (dispatch: AppDispatchType) => {
-  const allergies = await axios.get('/api/v1/allergies');
+  const allergies = await axios.get(`${process.env.API_BASE_URL}/api/v1/allergies`);
 
   if (allergies.status === 200) {
     dispatch(allergiesSlice.actions.setAllergies(allergies.data));
