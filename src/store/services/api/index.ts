@@ -1,13 +1,20 @@
 import axios, { AxiosError, AxiosInstance, AxiosPromise } from 'axios';
 
-const axiosInstance: AxiosInstance = axios.create({
-  baseURL: process.env.BACKEND_HOST + '/api/v1/',  // Dynamically set the base URL
+// const axiosInstance: AxiosInstance = axios.create({
+//   baseURL: process.env.BACKEND_HOST + '/api/v1/',  // Dynamically set the base URL
+//   headers: {
+//     'Content-Type': 'application/json',
+//     'Access-Control-Allow-Origin': 'http://localhost:3000',
+//     'Access-Control-Allow-Credentials': true,
+//   },
+//   withCredentials: true,
+// });
+const axiosInstance = axios.create({
+  baseURL: 'https://doctoo-backend.onrender.com/api/v1/',
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:3000',
-    'Access-Control-Allow-Credentials': true,
   },
-  withCredentials: true,
+  withCredentials: true, 
 });
 
 export const baseRequest = async (requestFunction: () => AxiosPromise<any>) => {
